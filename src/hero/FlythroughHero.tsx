@@ -88,6 +88,8 @@ export function FlythroughHero({ onExplore }: { onExplore: () => void }) {
     let running = false
     let smoothedTime = 0
     let lastApplied = -1
+    let objectUrl = ''
+    const controller = new AbortController()
 
     const hideSplash = () => setSplashGone(true)
     const failToStatic = () => {
@@ -97,8 +99,29 @@ export function FlythroughHero({ onExplore }: { onExplore: () => void }) {
 
     video.addEventListener('canplaythrough', hideSplash, { once: true })
     video.addEventListener('error', failToStatic, { once: true })
-    const splashTimeout = window.setTimeout(hideSplash, 3200)
-    video.load()
+    const splashTimeout = window.setTimeout(hideSplash, 6000)
+
+    // Fetch the file and play it from a blob URL rather than pointing <video>
+    // straight at the network. Cloudflare Pages serves static assets without
+    // Range support (a Range request returns the whole file, 200, no
+    // Accept-Ranges), which makes a streamed video non-seekable: currentTime
+    // assignments are silently ignored and the scrub never moves. A blob is a
+    // complete in-memory buffer, so it seeks. Costs no extra bytes — a
+    // rangeless server hands over the entire file on any request anyway.
+    fetch(VIDEO_SRC, { signal: controller.signal })
+      .then((res) => {
+        if (!res.ok) throw new Error(`video ${res.status}`)
+        return res.blob()
+      })
+      .then((blob) => {
+        if (disposed) return
+        objectUrl = URL.createObjectURL(blob)
+        video.src = objectUrl
+        video.load()
+      })
+      .catch(() => {
+        if (!disposed) failToStatic()
+      })
 
     const frame = () => {
       if (disposed || !running) return
@@ -167,9 +190,11 @@ export function FlythroughHero({ onExplore }: { onExplore: () => void }) {
       disposed = true
       stopLoop()
       visibility.disconnect()
+      controller.abort()
       window.clearTimeout(splashTimeout)
       video.removeEventListener('canplaythrough', hideSplash)
       video.removeEventListener('error', failToStatic)
+      if (objectUrl) URL.revokeObjectURL(objectUrl)
     }
   }, [staticMode])
 
@@ -207,14 +232,14 @@ export function FlythroughHero({ onExplore }: { onExplore: () => void }) {
   return (
     <header className="fly" id="top" ref={rootRef}>
       <div className="fly-stage" aria-hidden="true">
+        {/* src is assigned a blob URL in the effect — see the fetch there. */}
         <video
           ref={videoRef}
           className="fly-stage__video"
-          src={VIDEO_SRC}
           poster={POSTER_SRC}
           muted
           playsInline
-          preload="auto"
+          preload="none"
         />
         <div className="fly-stage__vignette" />
         <div className="fly-stage__release" ref={releaseRef} />
