@@ -1,0 +1,374 @@
+.fly {
+  position: relative;
+}
+
+/* ---- fixed video stage ---- */
+.fly-stage {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: var(--navy-950);
+  overflow: hidden;
+}
+
+.fly-stage__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: saturate(0.94) contrast(1.03);
+}
+
+.fly-stage__vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at center, transparent 46%, rgba(8, 21, 39, 0.42) 100%),
+    linear-gradient(to bottom, rgba(8, 21, 39, 0.34) 0, transparent 24%);
+}
+
+.fly-stage__release {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(
+    ellipse 85% 65% at center 58%,
+    rgba(247, 243, 234, 0.92) 0,
+    rgba(239, 232, 218, 0.6) 52%,
+    rgba(8, 21, 39, 0) 96%
+  );
+}
+
+/* ---- splash ---- */
+.fly-splash {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  background: var(--navy-900);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.4rem;
+  transition: opacity 0.7s ease;
+}
+
+.fly-splash.gone {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.fly-splash__mark {
+  width: 64px;
+  height: 64px;
+  animation: fly-breathe 2.4s ease-in-out infinite;
+}
+
+@keyframes fly-breathe {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.72;
+  }
+  50% {
+    transform: scale(1.07);
+    opacity: 1;
+  }
+}
+
+.fly-splash__label {
+  font-size: 0.66rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(247, 243, 234, 0.66);
+  text-align: center;
+  padding-inline: 2rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fly-splash__mark {
+    animation: none;
+  }
+}
+
+/* ---- scroll runway + floating cards ---- */
+.fly-track {
+  position: relative;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.fly-viewport {
+  position: fixed;
+  inset: 0;
+  z-index: 5;
+  perspective: 1200px;
+  pointer-events: none;
+}
+
+.fly-card {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  padding: clamp(5.5rem, 12vh, 8rem) var(--gutter) clamp(3rem, 8vh, 5rem);
+  opacity: 0;
+  pointer-events: none;
+  transform-style: preserve-3d;
+  will-change: opacity, transform;
+}
+
+.fly-card.is-active {
+  pointer-events: auto;
+}
+
+.fly-card--hero {
+  justify-content: flex-start;
+}
+
+.fly-card--right {
+  justify-content: flex-end;
+}
+
+.fly-card--left {
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+
+.fly-card--center {
+  justify-content: center;
+}
+
+.fly-card__inner {
+  max-width: min(600px, 46vw);
+  color: var(--paper);
+}
+
+.fly-card__inner--glass {
+  background: linear-gradient(
+    135deg,
+    rgba(247, 243, 234, 0.94) 0,
+    rgba(239, 232, 218, 0.88) 100%
+  );
+  backdrop-filter: blur(14px) saturate(130%);
+  -webkit-backdrop-filter: blur(14px) saturate(130%);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-float);
+  padding: clamp(1.7rem, 3vw, 2.6rem);
+  color: var(--ink);
+  max-width: min(560px, 52vw);
+}
+
+.fly-card__inner--glass h2 {
+  font-size: clamp(1.6rem, 2.9vw, 2.3rem);
+  color: var(--navy-800);
+  margin: 0.85rem 0 0.8rem;
+}
+
+.fly-card__inner--glass p {
+  color: var(--ink-soft);
+  font-size: 1.02rem;
+}
+
+.fly-card__inner--center {
+  text-align: center;
+}
+
+.fly-card__inner--center .pill {
+  margin-top: 1.4rem;
+}
+
+/* hero card type */
+.fly-card--hero h1 {
+  font-size: clamp(2.6rem, 5.4vw, 4.4rem);
+  font-weight: 700;
+  color: var(--paper);
+  text-shadow: 0 3px 26px rgba(8, 21, 39, 0.55);
+  margin-top: 1.6rem;
+}
+
+.fly-card--hero h1 em {
+  font-style: normal;
+  color: var(--sky);
+}
+
+.fly-hero__sub {
+  margin-top: 1.1rem;
+  max-width: 44ch;
+  font-size: clamp(1rem, 1.5vw, 1.18rem);
+  color: rgba(247, 243, 234, 0.88);
+  text-shadow: 0 2px 16px rgba(8, 21, 39, 0.6);
+}
+
+.fly-hero__ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 1.9rem;
+}
+
+.fly-hero__mark {
+  height: 54px;
+  width: auto;
+}
+
+.fly-hero__hint {
+  display: inline-block;
+  margin-top: 3rem;
+  font-size: 0.66rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(247, 243, 234, 0.62);
+  animation: fly-hint 2.2s ease-in-out infinite;
+}
+
+@keyframes fly-hint {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.55;
+  }
+  50% {
+    transform: translateY(6px);
+    opacity: 1;
+  }
+}
+
+.fly-list {
+  list-style: none;
+  margin: 0.4rem 0 0;
+  padding: 0;
+}
+
+.fly-list li {
+  position: relative;
+  padding: 0.55rem 0 0.55rem 2rem;
+  border-bottom: 1px solid rgba(22, 56, 92, 0.14);
+  color: var(--ink-soft);
+  font-size: 1rem;
+}
+
+.fly-list li:last-child {
+  border-bottom: 0;
+}
+
+.fly-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.78em;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--blue);
+}
+
+.fly-list li::after {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: calc(0.78em + 4px);
+  width: 10px;
+  height: 6px;
+  border-left: 2.4px solid #fff;
+  border-bottom: 2.4px solid #fff;
+  transform: rotate(-45deg);
+}
+
+/* ---- progress bar ---- */
+.fly-progress {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  z-index: 50;
+  background: rgba(247, 243, 234, 0.14);
+  pointer-events: none;
+}
+
+.fly-progress__bar {
+  height: 100%;
+  background: var(--sky);
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: opacity 0.5s ease;
+}
+
+/* ---- static fallback hero ---- */
+.fly-static {
+  position: relative;
+  min-height: 92svh;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  background: var(--navy-900);
+}
+
+.fly-static__bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .fly-static__bg {
+    animation: fly-kenburns 22s ease-in-out infinite alternate;
+  }
+
+  @keyframes fly-kenburns {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(1.08);
+    }
+  }
+}
+
+.fly-static__scrim {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to top, rgba(8, 21, 39, 0.82) 0, rgba(8, 21, 39, 0.28) 55%, rgba(8, 21, 39, 0.45) 100%);
+}
+
+.fly-static__content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  padding-block: clamp(3rem, 8vh, 5rem);
+  color: var(--paper);
+}
+
+.fly-static__content h1 {
+  font-size: clamp(2.3rem, 8vw, 3.6rem);
+  color: var(--paper);
+  margin-top: 1.4rem;
+}
+
+.fly-static__content h1 em {
+  font-style: normal;
+  color: var(--sky);
+}
+
+.fly-static__content p {
+  margin-top: 1rem;
+  max-width: 46ch;
+  color: rgba(247, 243, 234, 0.88);
+  font-size: 1.05rem;
+}
+
+/* ---- small screens: cards need full width ---- */
+@media (max-width: 900px) {
+  .fly-card__inner,
+  .fly-card__inner--glass {
+    max-width: 100%;
+  }
+}

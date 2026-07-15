@@ -1,0 +1,49 @@
+:root {
+  /* Brand */
+  --navy-950: #081527;
+  --navy-900: #0b1f35;
+  --navy-800: #0f2a47;
+  --navy-700: #16385c;
+  --navy-600: #1f4b7a;
+  --steel: #5c7186;
+  --steel-light: #93a5b7;
+  --paper: #f7f3ea;
+  --paper-dim: #efe8da;
+  --white: #ffffff;
+  --orange: #e8620c;
+  --orange-deep: #c85208;
+  /* AA-compliant orange for small text on light backgrounds */
+  --orange-text: #a34406;
+  --green: #1d9e75;
+
+  /* Blue accent family — the site leads with these; orange is reserved
+     for "coming soon" markers only. */
+  --sky: #a9c9e8;
+  --blue: #3e77b6;
+  --blue-deep: #2c5c92;
+
+  /* Roles */
+  --bg: var(--paper);
+  --ink: var(--navy-800);
+  --ink-soft: #33475c;
+  --ink-mute: var(--steel);
+  --accent: var(--orange);
+
+  /* Type */
+  --font-display: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+
+  /* Layout */
+  --gutter: clamp(1.25rem, 5vw, 4rem);
+  --max-width: 1180px;
+  --radius: 14px;
+  --radius-lg: 20px;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur: 320ms;
+
+  /* Elevation */
+  --shadow-card: 0 18px 44px -22px rgba(11, 31, 53, 0.35);
+  --shadow-float: 0 30px 70px -30px rgba(8, 21, 39, 0.55);
+}

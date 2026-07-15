@@ -1,0 +1,377 @@
+.explorer {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(0.8rem, 2.5vw, 1.8rem);
+}
+
+.explorer__scrim {
+  position: absolute;
+  inset: 0;
+  background: rgba(8, 21, 39, 0.72);
+  backdrop-filter: blur(10px) saturate(110%);
+  -webkit-backdrop-filter: blur(10px) saturate(110%);
+  animation: explorer-fade 320ms ease;
+}
+
+@keyframes explorer-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.explorer__panel {
+  position: relative;
+  width: min(1100px, 100%);
+  max-height: min(960px, 100%);
+  display: flex;
+  flex-direction: column;
+  background: var(--navy-900);
+  border: 1px solid rgba(247, 243, 234, 0.16);
+  border-radius: calc(var(--radius-lg) + 4px);
+  box-shadow: var(--shadow-float);
+  overflow: hidden;
+  animation: explorer-rise 420ms var(--ease-out);
+}
+
+@keyframes explorer-rise {
+  from {
+    opacity: 0;
+    transform: translateY(26px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .explorer__scrim,
+  .explorer__panel,
+  .checklist--explorer li {
+    animation: none !important;
+  }
+}
+
+.explorer__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.3rem 1.8rem 0.7rem;
+}
+
+.explorer__head h2 {
+  color: var(--paper);
+  font-size: clamp(1.25rem, 2.4vw, 1.7rem);
+  margin-top: 0.5rem;
+}
+
+.explorer__close {
+  flex: none;
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(247, 243, 234, 0.3);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--paper);
+  font-size: 1.5rem;
+  line-height: 1;
+  transition: background var(--dur) ease, transform var(--dur) var(--ease-out);
+}
+
+.explorer__close:hover {
+  background: rgba(247, 243, 234, 0.12);
+  transform: rotate(90deg);
+}
+
+/* pathway stage filter */
+.explorer__pathway {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.5rem;
+  padding: 0.4rem 1.8rem 1rem;
+  border-bottom: 1px solid rgba(247, 243, 234, 0.12);
+  overflow-x: auto;
+}
+
+.explorer__stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45rem;
+  background: transparent;
+  border: 0;
+  border-radius: 12px;
+  padding: 0.7rem 1.1rem 0.55rem;
+  color: rgba(247, 243, 234, 0.75);
+  font-size: 0.82rem;
+  font-weight: 500;
+  transition: background var(--dur) ease, color var(--dur) ease;
+}
+
+.explorer__stage:hover {
+  background: rgba(247, 243, 234, 0.08);
+}
+
+.explorer__stage.is-on {
+  background: rgba(169, 201, 232, 0.16);
+  color: var(--paper);
+}
+
+.explorer__bars {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 46px;
+}
+
+.explorer__bars i {
+  display: inline-block;
+  width: 9px;
+  max-height: 100%;
+  border-radius: 2px 2px 0 0;
+  background: rgba(247, 243, 234, 0.4);
+  transition: background var(--dur) ease;
+}
+
+.explorer__stage.is-on .explorer__bars i {
+  background: var(--sky);
+}
+
+.explorer__clear {
+  align-self: center;
+  margin-left: auto;
+  background: transparent;
+  border: 0;
+  color: rgba(247, 243, 234, 0.6);
+  font-size: 0.8rem;
+  text-decoration: underline;
+  white-space: nowrap;
+}
+
+.explorer__clear:hover {
+  color: var(--paper);
+}
+
+/* body: rail + detail */
+.explorer__body {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  flex: 1;
+  min-height: 0;
+}
+
+.explorer__rail {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 1.2rem 0.9rem 1.2rem 1.4rem;
+  overflow-y: auto;
+  border-right: 1px solid rgba(247, 243, 234, 0.12);
+}
+
+.explorer__railitem {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.7rem;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  border-left: 3px solid transparent;
+  border-radius: 0 10px 10px 0;
+  padding: 0.8rem 0.9rem;
+  color: rgba(247, 243, 234, 0.78);
+  font-size: 0.92rem;
+  font-weight: 500;
+  transition: background var(--dur) ease, color var(--dur) ease;
+}
+
+.explorer__railitem small {
+  color: rgba(247, 243, 234, 0.5);
+  font-size: 0.78rem;
+  white-space: nowrap;
+}
+
+.explorer__railitem:hover {
+  background: rgba(247, 243, 234, 0.07);
+}
+
+.explorer__railitem.is-on {
+  background: rgba(247, 243, 234, 0.1);
+  border-left-color: var(--sky);
+  color: var(--paper);
+}
+
+.explorer__detail {
+  padding: 1.6rem 1.8rem;
+  overflow-y: auto;
+  background: var(--paper);
+  animation: explorer-detail 360ms var(--ease-out);
+}
+
+@keyframes explorer-detail {
+  from {
+    opacity: 0;
+    transform: translateX(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.explorer__kicker {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--blue-deep);
+}
+
+.explorer__kicker em {
+  font-style: normal;
+  color: var(--ink-mute);
+}
+
+.explorer__detail h3 {
+  font-size: clamp(1.4rem, 2.6vw, 1.9rem);
+  color: var(--navy-800);
+  margin-top: 0.6rem;
+}
+
+.explorer__blurb {
+  margin-top: 0.8rem;
+  color: var(--ink-soft);
+}
+
+.explorer__meta {
+  margin-top: 0.8rem;
+  font-size: 0.84rem;
+  color: var(--ink-mute);
+}
+
+.explorer__label {
+  margin-top: 1.1rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+
+.checklist--explorer li {
+  opacity: 0;
+  animation: explorer-item 420ms var(--ease-out) forwards;
+  padding: 0.45rem 0;
+}
+
+@keyframes explorer-item {
+  from {
+    opacity: 0;
+    transform: translateY(9px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.explorer__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.2rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(22, 56, 92, 0.15);
+}
+
+.explorer__price {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.55rem;
+  color: var(--navy-700);
+  line-height: 1.1;
+}
+
+.explorer__price small {
+  display: block;
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 0.72rem;
+  color: var(--ink-mute);
+}
+
+/* mobile: stack as a bottom sheet */
+@media (max-width: 760px) {
+  .explorer {
+    padding: 0;
+    align-items: flex-end;
+  }
+
+  .explorer__panel {
+    max-height: 94svh;
+    border-radius: 22px 22px 0 0;
+  }
+
+  .explorer__body {
+    grid-template-columns: 1fr;
+    overflow-y: auto;
+  }
+
+  .explorer__rail {
+    flex-direction: row;
+    overflow-x: auto;
+    overflow-y: hidden;
+    border-right: 0;
+    border-bottom: 1px solid rgba(247, 243, 234, 0.12);
+    padding: 0.9rem 1.2rem;
+  }
+
+  .explorer__railitem {
+    flex: none;
+    border-left: 0;
+    border-bottom: 3px solid transparent;
+    border-radius: 10px 10px 0 0;
+    padding: 0.6rem 0.8rem;
+  }
+
+  .explorer__railitem.is-on {
+    border-left-color: transparent;
+    border-bottom-color: var(--sky);
+  }
+
+  .explorer__railitem small {
+    display: none;
+  }
+
+  .explorer__bars {
+    height: 40px;
+  }
+
+  .explorer__bars i {
+    width: 7px;
+  }
+
+  .explorer__detail {
+    animation: none;
+  }
+}
+
+/* Must come after the base .checklist--explorer rule (same specificity —
+   source order decides): with animations off, items keep their base
+   opacity: 0 unless restored here. */
+@media (prefers-reduced-motion: reduce) {
+  .checklist--explorer li {
+    opacity: 1;
+  }
+}

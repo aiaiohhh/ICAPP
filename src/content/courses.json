@@ -1,0 +1,130 @@
+{
+  "stages": [
+    {
+      "slug": "operator",
+      "name": "Operator",
+      "blurb": "Verify the people in the seat are competent, current and confident."
+    },
+    {
+      "slug": "assessor",
+      "name": "Assessor",
+      "blurb": "Build assessors who make fair, consistent, defensible judgements."
+    },
+    {
+      "slug": "supervisor",
+      "name": "Supervisor",
+      "blurb": "Develop frontline leaders who plan, communicate and manage hazards."
+    },
+    {
+      "slug": "crew",
+      "name": "Whole crew",
+      "blurb": "Lift the way the whole team communicates, every shift."
+    }
+  ],
+  "categories": [
+    {
+      "slug": "competency-assessments",
+      "stage": "operator",
+      "kicker": "Verification of competency",
+      "title": "Competency-based assessments",
+      "blurb": "Independent verification that your operators can do the job safely and to standard — on your site, on your machines.",
+      "price": "POA",
+      "priceNote": "per operator",
+      "format": "On site · all plant classes",
+      "modules": [
+        { "label": "Verifications of competency (VOCs)" },
+        { "label": "Practical assessments" },
+        { "label": "Capability reviews" },
+        { "label": "Operator skill verification", "soon": true }
+      ]
+    },
+    {
+      "slug": "assessment-tool-development",
+      "stage": "assessor",
+      "kicker": "Build your own tools",
+      "title": "Assessment tool development",
+      "blurb": "Learn to create clear, compliant, industry-aligned assessment tools — from mapping to marking guides — so the evidence you collect is valid, reliable and sufficient.",
+      "price": "$299",
+      "priceNote": "coaching + templates",
+      "format": "1-hour coaching · online",
+      "modules": [
+        { "label": "Assessment plans" },
+        { "label": "Observation checklists" },
+        { "label": "Knowledge questions" },
+        { "label": "Mapping guides" },
+        { "label": "Evidence sheets" }
+      ]
+    },
+    {
+      "slug": "assessor-coaching",
+      "stage": "assessor",
+      "kicker": "Coaching program",
+      "title": "Assessor coaching & development",
+      "blurb": "Practical coaching that strengthens the skill and confidence of your workplace assessors — so every assessment decision stands up to scrutiny.",
+      "price": "from $499",
+      "priceNote": "per assessor",
+      "format": "Custom-built · on site or remote",
+      "modules": [
+        { "label": "Conducting quality assessments" },
+        { "label": "Recording evidence correctly" },
+        { "label": "Observation & questioning technique" },
+        { "label": "Giving effective feedback" },
+        { "label": "Building assessor confidence" }
+      ]
+    },
+    {
+      "slug": "workforce-capability",
+      "stage": "supervisor",
+      "kicker": "Frontline leadership",
+      "title": "Workforce capability & supervisor training",
+      "blurb": "Develops frontline supervisors and emerging leaders for safe, efficient, high-performing operations — from task planning to team performance.",
+      "price": "from $2,500",
+      "priceNote": "cohort program",
+      "format": "Cohort program · mining & civil",
+      "modules": [
+        { "label": "Communication" },
+        { "label": "Task allocation" },
+        { "label": "Hazard management" },
+        { "label": "Coaching techniques" },
+        { "label": "Leadership foundations" }
+      ]
+    },
+    {
+      "slug": "positive-communication",
+      "stage": "crew",
+      "kicker": "Culture program",
+      "title": "Power of positive communication",
+      "blurb": "Clear, respectful, solution-focused language that improves teamwork, reduces conflict and builds a site where problems get solved constructively.",
+      "price": "from $2,700",
+      "priceNote": "whole-of-crew unit",
+      "format": "One unit · delivered on site",
+      "modules": [
+        { "label": "What positive communication means" },
+        { "label": "Positive communication in your workplace" },
+        { "label": "How positive communication affects you" },
+        { "label": "The effectiveness of positive communication", "soon": true },
+        { "label": "Measuring the effects on your crew", "soon": true }
+      ]
+    }
+  ],
+  "templates": [
+    {
+      "title": "Assessment toolkit",
+      "price": "$79",
+      "blurb": "The full set of instruments to run a compliant workplace assessment, ready to adapt.",
+      "soon": false
+    },
+    {
+      "title": "VOC template pack",
+      "price": "$39",
+      "blurb": "Verification of competency templates covering common plant classes.",
+      "soon": false
+    },
+    {
+      "title": "Supervisor starter pack",
+      "price": "$49",
+      "blurb": "Prestart, task allocation and coaching templates for new frontline leaders.",
+      "soon": true
+    }
+  ]
+}

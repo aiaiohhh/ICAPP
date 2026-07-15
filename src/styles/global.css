@@ -1,0 +1,180 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img,
+video {
+  max-width: 100%;
+  display: block;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  line-height: 1.12;
+  margin: 0;
+  letter-spacing: -0.015em;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+.container {
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section {
+  padding-block: clamp(4rem, 9vw, 7rem);
+}
+
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--blue-deep);
+}
+
+.kicker::before {
+  content: '';
+  width: 22px;
+  height: 2px;
+  background: var(--blue);
+}
+
+.section-title {
+  font-size: clamp(1.8rem, 3.6vw, 2.7rem);
+  font-weight: 600;
+  color: var(--navy-800);
+  margin-top: 0.9rem;
+  max-width: 22ch;
+}
+
+.section-intro {
+  margin-top: 1rem;
+  max-width: 58ch;
+  color: var(--ink-soft);
+  font-size: 1.05rem;
+}
+
+/* Brand pill buttons — the one motif kept from the original draft */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 0;
+  border-radius: 999px;
+  padding: 0.85rem 1.7rem;
+  font-family: var(--font-body);
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: var(--navy-700);
+  color: var(--paper);
+  transition:
+    transform var(--dur) var(--ease-out),
+    background var(--dur) ease,
+    box-shadow var(--dur) ease;
+}
+
+.pill:hover {
+  background: var(--navy-600);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card);
+}
+
+/* Light pill for dark (navy or video) backgrounds. */
+.pill--light {
+  background: var(--paper);
+  color: var(--navy-800);
+}
+
+.pill--light:hover {
+  background: #ffffff;
+}
+
+.pill--ghost {
+  background: transparent;
+  color: var(--paper);
+  box-shadow: inset 0 0 0 1.5px rgba(247, 243, 234, 0.55);
+}
+
+.pill--ghost:hover {
+  background: rgba(247, 243, 234, 0.12);
+  box-shadow:
+    inset 0 0 0 1.5px rgba(247, 243, 234, 0.9),
+    var(--shadow-card);
+}
+
+.pill--ghost-navy {
+  background: transparent;
+  color: var(--navy-700);
+  box-shadow: inset 0 0 0 1.5px rgba(22, 56, 92, 0.4);
+}
+
+.pill--ghost-navy:hover {
+  background: rgba(22, 56, 92, 0.07);
+  box-shadow: inset 0 0 0 1.5px rgba(22, 56, 92, 0.75);
+}
+
+.soon-pill {
+  display: inline-block;
+  background: var(--orange);
+  color: var(--navy-950);
+  border-radius: 999px;
+  padding: 0.15rem 0.7rem;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+:focus-visible {
+  outline: 2.5px solid var(--blue);
+  outline-offset: 3px;
+}
