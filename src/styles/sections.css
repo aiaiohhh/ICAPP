@@ -44,9 +44,50 @@
   letter-spacing: -0.03em;
 }
 
+/* Stacked lockup: ICAP wordmark with the spelled-out name beneath it. */
+.brandmark--lockup {
+  gap: 0.55rem;
+}
+
+.brandmark__wordwrap {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.12rem;
+}
+
+.brandmark--lockup .brandmark__word {
+  font-size: 1.32rem;
+  line-height: 1;
+}
+
+.brandmark__strapline {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.5rem;
+  letter-spacing: 0.145em;
+  text-transform: uppercase;
+  line-height: 1;
+  white-space: nowrap;
+  opacity: 0.82;
+}
+
+/* On narrow phones the nav strapline would crowd the hamburger — drop it
+   there and keep the compact ICAP + badge. The footer lockup (full width)
+   keeps the strapline. */
+@media (max-width: 430px) {
+  .nav .brandmark__strapline {
+    display: none;
+  }
+}
+
 .brandmark__badge {
   width: 30px;
   height: 30px;
+}
+
+.brandmark--lockup .brandmark__badge {
+  width: 34px;
+  height: 34px;
 }
 
 .fly-hero__mark .brandmark__badge,

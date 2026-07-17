@@ -5,10 +5,10 @@ export function Footer() {
     <footer className="footer">
       <div className="container footer__inner">
         <div className="footer__brand">
-          <BrandMark tone="light" />
+          <BrandMark tone="light" strapline />
           <p>
-            Industry Compliance &amp; Proficiency Australia. Building competent,
-            confident and compliant workforces.
+            Building competent, confident and compliant workforces across
+            Australia.
           </p>
         </div>
         <nav className="footer__links" aria-label="Footer">

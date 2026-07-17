@@ -37,7 +37,7 @@ export function Nav() {
     <nav className={`nav${solid ? ' nav--solid' : ''}${open ? ' nav--open' : ''}`}>
       <div className="nav__inner container">
         <a className="nav__brand" href="#top" aria-label="ICAP — back to top">
-          <BrandMark tone={solid ? 'navy' : 'light'} />
+          <BrandMark tone={solid ? 'navy' : 'light'} strapline />
         </a>
         <div className="nav__links" id="nav-menu">
           {LINKS.map((link) => (

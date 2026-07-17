@@ -2,15 +2,19 @@
  * Inline ICAP brand mark: bold wordmark plus the circular rising-bars badge,
  * recreated as vector so it stays crisp and can be recoloured (the supplied
  * PNG is navy-only). `tone` picks the colourway; `withText` toggles the
- * "ICAP" letters vs. badge-only.
+ * "ICAP" letters vs. badge-only; `strapline` adds the spelled-out company
+ * name in small letter-spaced caps beneath the wordmark (the original logo
+ * lockup).
  */
 export function BrandMark({
   tone = 'navy',
   withText = true,
+  strapline = false,
   className,
 }: {
   tone?: 'navy' | 'light'
   withText?: boolean
+  strapline?: boolean
   className?: string
 }) {
   const ink = tone === 'navy' ? 'var(--navy-700)' : 'var(--paper)'
@@ -33,10 +37,19 @@ export function BrandMark({
     return <span className={`brandmark ${className ?? ''}`}>{badge}</span>
   }
 
+  const lockupClass = strapline ? 'brandmark brandmark--lockup' : 'brandmark'
+
   return (
-    <span className={`brandmark ${className ?? ''}`} style={{ color: ink }}>
-      <span className="brandmark__word" aria-hidden="true">
-        ICAP
+    <span className={`${lockupClass} ${className ?? ''}`} style={{ color: ink }}>
+      <span className="brandmark__wordwrap">
+        <span className="brandmark__word" aria-hidden="true">
+          ICAP
+        </span>
+        {strapline && (
+          <span className="brandmark__strapline" aria-hidden="true">
+            Industry Compliance &amp; Proficiency Australia
+          </span>
+        )}
       </span>
       {badge}
       <span className="sr-only">ICAP — Industry Compliance and Proficiency Australia</span>
