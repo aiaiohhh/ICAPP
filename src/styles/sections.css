@@ -44,15 +44,18 @@
   letter-spacing: -0.03em;
 }
 
-/* Stacked lockup: ICAP wordmark with the spelled-out name beneath it. */
-.brandmark--lockup {
-  gap: 0.55rem;
+/* Top row of the mark: ICAP wordmark with the badge beside it. */
+.brandmark__top {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
 }
 
-.brandmark__wordwrap {
-  display: inline-flex;
+/* Stacked lockup: ICAP + badge on top, spelled-out name beneath. */
+.brandmark--lockup {
   flex-direction: column;
-  gap: 0.12rem;
+  align-items: flex-start;
+  gap: 0.2rem;
 }
 
 .brandmark--lockup .brandmark__word {

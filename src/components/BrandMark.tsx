@@ -41,17 +41,17 @@ export function BrandMark({
 
   return (
     <span className={`${lockupClass} ${className ?? ''}`} style={{ color: ink }}>
-      <span className="brandmark__wordwrap">
+      <span className="brandmark__top">
         <span className="brandmark__word" aria-hidden="true">
           ICAP
         </span>
-        {strapline && (
-          <span className="brandmark__strapline" aria-hidden="true">
-            Industry Compliance &amp; Proficiency Australia
-          </span>
-        )}
+        {badge}
       </span>
-      {badge}
+      {strapline && (
+        <span className="brandmark__strapline" aria-hidden="true">
+          Industry Compliance &amp; Proficiency Australia
+        </span>
+      )}
       <span className="sr-only">ICAP — Industry Compliance and Proficiency Australia</span>
     </span>
   )
